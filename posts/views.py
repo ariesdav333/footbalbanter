@@ -1,4 +1,5 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect,reverse
+from django.contrib import auth
 from django.utils import timezone
 from .models import Post
 from .forms import BlogPostForm
@@ -39,3 +40,4 @@ def create_or_edit_post(request, pk=None):
     else:
         form = BlogPostForm(instance=post)
     return render(request, 'blogpostform.html', {'form': form})
+    

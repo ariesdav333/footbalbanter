@@ -25,7 +25,8 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', RedirectView.as_view(url='posts/')),
+    url(r'^$', RedirectView.as_view(url='posts/')), # This is redirecting to blogposts.html will change this if i want another page to load like login 
+
     url(r'posts/', include('posts.urls')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
 ]
