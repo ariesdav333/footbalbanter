@@ -3,8 +3,11 @@ from django.contrib import auth
 from django.utils import timezone
 from .models import Post
 from .forms import BlogPostForm
+from django.contrib.auth.decorators import login_required
 
+# TESTING - ADDING @LOGIN_REQUIRED()
 
+@login_required()
 def get_posts(request):
     """
     Create a view that will return a

@@ -19,14 +19,15 @@ from django.views.generic import RedirectView
 from django.views.static import serve
 from .settings import MEDIA_ROOT
 from django.urls import path
+from accounts import urls as urls_accounts
 
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', RedirectView.as_view(url='posts/')), # This is redirecting to blogposts.html will change this if i want another page to load like login 
-
+    url(r'^$', RedirectView.as_view(url='posts/')), # This is redirecting to blogposts.html will change this if i want another page to load like login url='posts/'
     url(r'posts/', include('posts.urls')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
+    url(r'^accounts/', include(urls_accounts)),
 ]

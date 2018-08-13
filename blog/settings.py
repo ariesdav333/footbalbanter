@@ -48,8 +48,6 @@ INSTALLED_APPS = [
     'django.contrib.sites',  
     'disqus',
     'accounts',
-   
-   
     
 ]
 
@@ -124,13 +122,11 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend',
-                            'accounts.backends.EmailAuth',
-                            #'accounts.backends.CaseInsensitiveAuth',
-                        ]
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'accounts.backends.EmailAuth'
+]
 
-# Internationalization
-# https://docs.djangoproject.com/en/2.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 
@@ -154,6 +150,13 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-#session storage for messages
-MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
 
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+#email backend only needed to view info in the console
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = os.environ.get("EMAIL_ADDRESS")
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_PASSWORD")
+EMAIL_PORT = 587
