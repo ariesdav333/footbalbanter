@@ -18,7 +18,7 @@ def get_posts(request):
                                 ).order_by('-published_date')
     return render(request, "blogposts.html", {'posts': posts})
 
-
+@login_required()
 def post_detail(request, pk):
     """
     Create a view that return a single
@@ -32,7 +32,7 @@ def post_detail(request, pk):
     post.save()
     return render(request, "postdetail.html", {'post': post})
 
-
+@login_required()
 def create_or_edit_post(request, pk=None):
     post = get_object_or_404(Post, pk=pk) if pk else None
     if request.method == "POST":
